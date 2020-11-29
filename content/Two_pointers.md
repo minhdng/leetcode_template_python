@@ -1,5 +1,10 @@
 # Two Pointer Problems
 
+## Reference
+https://www.pluralsight.com/guides/algorithm-templates:-two-pointers-part-1
+https://www.pluralsight.com/guides/algorithm-templates:-two-pointers-part-2
+https://www.pluralsight.com/guides/algorithm-templates:-two-pointers-part-3
+
 ## Sliding Window
 ```python
 # more specific version of sliding window

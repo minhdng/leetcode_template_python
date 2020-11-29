@@ -8,6 +8,23 @@ spicythis
 
 To be added
 
+## Data Structure and Patterns
+
+### Hashmap
+
+```python
+dictionary = {}
+for index, element in enumerate(List):
+    if element in dictionary:
+        return element, index                           #
+    else:
+        dictionary[ process_logic(element) ] = index    #
+```
+
+Examples:
+- [1] https://leetcode.com/problems/two-sum/
+
+
 ## Algorithms
 
 ### BFS
@@ -29,14 +46,14 @@ def bfs(graph, start):
                 queue.append(neighbour)
     return explored
 ```
+
 ### DFS
 ```python
 def dfs(graph, start)
 ```
+
 ### Binary Search
-
 *Parameters*: `condition`, `left, right` initial condition, and `return` output. 
-
 ```python
 def binary_search(array) -> int:
     def condition(value) -> bool:
@@ -51,17 +68,12 @@ def binary_search(array) -> int:
     return left                         #
 ```
 
-### Sliding Window
-
-If nested loop is required, single loop may be used to reduce time complexity.
- two 
+Examples:
+- [4](H) https://leetcode.com/problems/median-of-two-sorted-arrays/
 
 
 ### Two Pointers
-
-https://www.pluralsight.com/guides/algorithm-templates:-two-pointers-part-1
-https://www.pluralsight.com/guides/algorithm-templates:-two-pointers-part-2
-https://www.pluralsight.com/guides/algorithm-templates:-two-pointers-part-3
+If nested loop is required, single loop may be used to reduce time complexity.
 
 #### Slow vs Fast
 ```python
@@ -77,7 +89,6 @@ def slow_fast_runner(self, seq):
         # process logic before or after pointers movement
         self.process_logic(slow, fast)
 ```
-
 Examples:
 - [26] https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 - [19] https://leetcode.com/problems/remove-nth-node-from-end-of-list/
@@ -92,7 +103,6 @@ def old_new_state(self, seq):
         # process current element with old state
         old, new = new, self.process_logic(element, old)
 ```
-
 Examples:
 - [509] https://leetcode.com/problems/fibonacci-number/
 - [198] https://leetcode.com/problems/house-robber/
@@ -135,16 +145,13 @@ def left_right_boundary(self, seq):
         # process logic before or after pointers movement
         self.process_logic(left, right)
 ```
-
 Examples:
 - Binary Search
 - [167] https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 - [18] https://leetcode.com/problems/4sum/
 - [11] https://leetcode.com/problems/container-with-most-water/
 
-
-
-#### Start vs End of Sliding Window
+#### Start vs End (Sliding Window)
 ```python
 # start & end of sliding window: |start-> ... end->|
 # short version of sliding window, focus on two pointers
@@ -164,9 +171,6 @@ def start_end_sliding_window(self, seq):
         # or process logic after pointers movement
         self.process_logic2(start, end)
 ```
-
-More detailed version: (content)
-
 Examples: 
 - [76] https://leetcode.com/problems/minimum-window-substring/
 - [3] https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -174,7 +178,6 @@ Examples:
 - [30] https://leetcode.com/problems/substring-with-concatenation-of-all-words/
 
 #### Three pointers
-
 Classic example: 
 ```python
 # [75] https://leetcode.com/problems/sort-colors/
@@ -193,11 +196,15 @@ def sortColors(nums):
             blue -= 1
 ```
 
-### Top Down Recursive
-
-### Back Tracking
-
 ### Dynamic Programming
+
+#### Top Down Recursion
+
+#### Top Down Recursion with Memoization (Backtracking)
+
+#### Bottom Up
+
+### Greedy Algorithm
 
 ## References
 https://github.com/recnac-itna/Algorithm_Templates
