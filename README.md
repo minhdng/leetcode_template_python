@@ -1,12 +1,12 @@
-# Common Algorithm Templates for Python
+# Common Algorithm Templates \\ for Python
 
 ## Authors
 
 spicythis
 
-### Algorithms
+## Algorithms
 
-#### Binary search
+### Binary search
 
 *Parameters*: `condition`, `left, right` initial condition, and `return` output. 
 
@@ -24,4 +24,4 @@ def binary_search(array) -> int:
     return left
 ```
 
-#### Sliding Window
+### Sliding Window
