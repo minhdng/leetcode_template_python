@@ -1,6 +1,6 @@
 ## 3-Card Poker
-https://www.hackerrank.com/contests/projecteuler/challenges/euler054
-5 card version
+5 card version: https://www.hackerrank.com/contests/projecteuler/challenges/euler054
+
 ```python
 import os
 from itertools import *
