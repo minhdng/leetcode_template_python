@@ -27,31 +27,6 @@ Examples:
 
 ## Algorithms
 
-### BFS
-```python
-def bfs(graph, start):
-    explored = []           # track visited nodes
-    queue = [start]         # track nodes to be checked
- 
-    while queue:
-        # pop shallowest node (first node) from queue
-        node = queue.pop(0)
-        if node not in explored:
-            # add node to list of checked nodes
-            explored.append(node)
-            neighbours = graph[node]
- 
-            # add neighbours of node to queue
-            for neighbour in neighbours:
-                queue.append(neighbour)
-    return explored
-```
-
-### DFS
-```python
-def dfs(graph, start)
-```
-
 ### Binary Search
 *Parameters*: `condition`, `left, right` initial condition, and `return` output. 
 ```python
@@ -70,6 +45,7 @@ def binary_search(array) -> int:
 
 Examples:
 - [4](H) https://leetcode.com/problems/median-of-two-sorted-arrays/
+
 
 
 ### Two Pointers
@@ -198,13 +174,173 @@ def sortColors(nums):
 
 ### Dynamic Programming
 
+Given in the context of the Fibonacci problem
+
 #### Top Down Recursion
+Typically suffered from overlapping subproblems. 
+```python
+def fib_TD(n):
+    # base cases
+    if n == 0:
+        return 1
+    elif n == 1:
+        return 1
+    return fib_TD(n - 1) + fib_TD(n - 2)
+```
 
 #### Top Down Recursion with Memoization (Backtracking)
+```python
+def fib_BT(n):
+    # initialize memory
+    memo = [-1] * (n + 1)
+    return fib_BT_aux(n, memo)
+
+def fib_BT_aux(n, memo):
+    if n == 0:
+        return 1
+    elif n == 1:
+        return 1
+    if memo[n] > -1:
+        return memo[n]
+    memo[n] = fib_BT_aux(n - 1, memo) + fib_BT_aux(n - 2, memo)
+
+    return memo[n]
+```
 
 #### Bottom Up
+```python
+def fib_BU(n):
+    memo = [-1] * (n + 1)
+    memo[0] = memo[1] = 1
+    for i in range(2, n + 1):
+        memo[n] = memo[n - 1] + memo[n - 2]
+
+    return memo[n]
+```
+
+
 
 ### Greedy Algorithm
+
+
+### Graphs
+#### BFS
+In graph context: 
+```python
+def bfs(graph, start):
+    explored = []           # track visited nodes
+    queue = [start]         # track nodes to be checked
+ 
+    while queue:
+        # pop shallowest node (first node) from queue
+        node = queue.pop(0)
+        if node not in explored:
+            # add node to list of checked nodes
+            explored.append(node)
+            neighbours = graph[node]
+ 
+            # add neighbours of node to queue
+            for neighbour in neighbours:
+                queue.append(neighbour)
+    return explored
+```
+
+#### DFS
+In graph context:
+```python
+def dfs(graph, start, visited):
+    if start not in visited:
+        visited.append(start)
+        for n in graph[start]:
+            dfs(graph,n, visited)
+    return visited
+```
+In matrix context: 
+```python
+def dfs(matrix):
+    # 1. Check for an empty graph.
+    if not matrix:
+        return []
+
+    # 2. Initialize
+    rows, cols = len(matrix), len(matrix[0])
+    visited = set()
+    directions = ((0, 1), (0, -1), (1, 0), (-1, 0))
+
+    def traverse(i, j):
+        # a. Check if visited
+        if (i, j) in visited:
+            return
+        # b. Else add to visted
+        visited.add((i, j))
+
+        # c. Traverse neighbors.
+        for direction in directions:
+            next_i, next_j = i + direction[0], j + direction[1]
+            if 0 <= next_i < rows and 0 <= next_j < cols:
+                # d. Add in your question-specific checks.
+                traverse(next_i, next_j)
+
+    # 3. For each point, traverse it.
+    for i in range(rows):
+        for j in range(cols):
+            traverse(i, j)
+```
+Examples:
+- [417] https://leetcode.com/problems/pacific-atlantic-water-flow/
+- 
+
+#### Dijkstra 
+
+Dijkstra finds the smallest distance between two nodes in a graph. The algorithm is greedy, and only works for undirected graphs or directed graphs with nonnegative weights. 
+```python
+def dijkstra(self, source, dest):
+    assert source in self.vertices, 'Such source node doesn\'t exist'
+
+    # 1. Mark all nodes unvisited and store them.
+    # 2. Set the distance to zero for our initial node 
+    # and to infinity for other nodes.
+    distances = {vertex: inf for vertex in self.vertices}
+    previous_vertices = {
+        vertex: None for vertex in self.vertices
+    }
+    distances[source] = 0
+    vertices = self.vertices.copy()
+
+    while vertices:
+        # 3. Select the unvisited node with the smallest distance, 
+        # it's current node now.
+        current_vertex = min(vertices, key=lambda vertex: distances[vertex])
+
+        # 6. Stop, if the smallest distance 
+        # among the unvisited nodes is infinity.
+        if distances[current_vertex] == inf:
+            break
+
+        # 4. Find unvisited neighbors for the current node 
+        # and calculate their distances through the current node.
+        for neighbour, cost in self.neighbours[current_vertex]:
+            alternative_route = distances[current_vertex] + cost
+
+            # Compare the newly calculated distance to the assigned 
+            # and save the smaller one.
+            if alternative_route < distances[neighbour]:
+                distances[neighbour] = alternative_route
+                previous_vertices[neighbour] = current_vertex
+
+        # 5. Mark the current node as visited 
+        # and remove it from the unvisited set.
+        vertices.remove(current_vertex)
+
+
+    path, current_vertex = deque(), dest
+    while previous_vertices[current_vertex] is not None:
+        path.appendleft(current_vertex)
+        current_vertex = previous_vertices[current_vertex]
+    if path:
+        path.appendleft(current_vertex)
+    return path
+```
 
 ## References
 https://github.com/recnac-itna/Algorithm_Templates
