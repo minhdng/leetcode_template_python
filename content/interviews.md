@@ -98,6 +98,27 @@ if __name__ == "__main__":
 ## Almost Equivalent Strings
 ## Angry Animals
 ## Ancestral Names
+Useful to use:
+[13] https://leetcode.com/problems/roman-to-integer/
+```python
+    def romanToInt(self, s: str) -> int:
+        d = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+        
+        # transform for better reading
+        s = s.replace("IV", "IIII").replace("IX", "VIIII")
+        s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+        s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
+        
+        return sum(d[char] for char in s)
+```
 ## Array Journey
 ## Ascending Binary Sort
 ## Autoscale Policy
